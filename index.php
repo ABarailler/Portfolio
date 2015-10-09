@@ -10,6 +10,9 @@
 	<link href="css/style.css" rel="stylesheet">
 </head>
 <body>
+<?php 
+	require_once 'validForms.php';
+?>
 	<!--////////////////// MENU //////////////////////-->
 	<nav class="navbar navbar-default navbar-fixed-top">
 		<div class="container">
@@ -240,10 +243,14 @@
 						<p><i class="fa fa-phone"></i> 06 76 39 18 71</p>
 						<p><i class="fa fa-envelope"></i> alix.barailler@gmail.com</p>
 					</div>
-
 				</div>
+				<?php 
+				if ( count($errors) != 0){
+					echo '<p>test</p>';
+				}
+				?>
 				<div class="col-md-12">
-					<form class="form-horizontal">
+					<form class="form-horizontal" method="POST" action="validForms.php">
 						<div class="form-group has-feedback" id="formName">
 							<label for="inputName" class="control-label"></label>
 							<div class="col-sm-offset-2 col-sm-8" id="contentName">
@@ -270,7 +277,7 @@
 						</div>
 						<div class="form-group">
 							<div class="col-sm-offset-2 col-sm-8 content-input text-left">
-								<button type="submit" class="btn btn-success" id="submitForm">Envoyer</button>
+								<button type="submit" class="btn btn-success" id="submitForm" name="send">Envoyer</button>
 							</div>
 						</div>
 					</form>

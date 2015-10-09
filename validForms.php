@@ -4,15 +4,15 @@
 	$errors = array();
 
 	// Check Entries
-	if (isset($_POST['send'])){
+	if (isset($_POST['send']) || strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) === 'xmlhttprequest'){
 		if(!(isset($_POST['username']) && !empty($_POST['username']))){
 			$errors['username'] =  "Nom requis...";
 		}else{
 			$username = $_POST['username'];
 			if(strpos($username , '@') !== false){
 				$errors['username'] = ' "@" non autorisé dans le nom de l\'utilisateur';
-			} elseif(strlen($username) < 3 || strlen($username) > 20) {
-				$errors['username'] = "Le nom de l'utilisateur doit contenir entre 3 et 20 caractères";
+			} elseif(strlen($username) < 3 ) {
+				$errors['username'] = "Le nom de l'utilisateur doit contenir au moin 3 caractéres";
 			}
 		}
 		if(!(isset($_POST['subject']) && !empty($_POST['subject']))){
@@ -21,8 +21,8 @@
 			$subjectTemp = $_POST['subject'];
 			if(strpos($subjectTemp , '@') !== false){
 				$errors['subject'] = ' "@" non autorisé dans l\'objet';
-			} elseif(strlen($subjectTemp) < 3 || strlen($subjectTemp) > 20) {
-				$errors['subject'] = "L'objet doit contenir entre 3 et 20 caractères";
+			} elseif(strlen($subjectTemp) < 3) {
+				$errors['subject'] = "L'objet doit contenir au moin 3 caractéres";
 			}
 		}
 		if(!(isset($_POST['message']) && !empty($_POST['message']))){
@@ -40,12 +40,11 @@
 
 	// If no errors, send mail
 		if (count($errors) === 0){
-			$to      = 'gregory.gales@gmail.com';
+			$to      = 'alix.barailler@gmail.com';
 	   		$subject = $subjectTemp;
 	    	$message = $messageTemp;
 	    	$headers = "From: \"".$username."\" <".$email.">" . "\r\n";
 			$test = mail($to, $subject, $message, $headers);
-			header('Location: clear.php');
 		}
 	}
 ?>

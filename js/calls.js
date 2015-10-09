@@ -44,7 +44,7 @@ $( document ).ready(function() {
 			$('.bg-danger').remove();
 			$("#info-contact").append('<div class="bg-success col-sm-offset-2 col-sm-8 text-left">Message envoyé...</div>');
 			ajoutSucessErreur(tabErrors);
-			console.log(tabContent);
+			sendMail();
 		}else{
 			console.log(displayErrors);
 			var listErrors = '<div class="bg-danger col-sm-offset-2 col-sm-8 text-left"><ul>';
@@ -68,13 +68,6 @@ var tabErrors = {
 		 "inputMessage": "0",
 	};
 
-var tabContent = {
-		 "inputName": "",
-		 "inputEmail": "",
-		 "inputSubject": "",
-		 "inputMessage": "",
-	};
-
 ///////////////////// Verification /////////////////////
 function verifName(champ){
 	if (champ.value){
@@ -85,7 +78,6 @@ function verifName(champ){
 		}
 		else{
 			ajoutSuccess($(champ).prop('id'));
-			tabContent['inputName'] = champ.value;
 			tabErrors['inputName'] = 1;
 		}
 	}else{
@@ -103,7 +95,6 @@ function verifEmail(champ){
 		}
 		else{
 			ajoutSuccess($(champ).prop('id'));
-			tabContent['inputEmail'] = champ.value;
 			tabErrors['inputEmail'] = 1;
 		}
 	}else{
@@ -120,7 +111,6 @@ function verifSubject(champ){
 		}
 		else{
 			ajoutSuccess($(champ).prop('id'));
-			tabContent['inputSubject'] = champ.value;
 			tabErrors['inputSubject'] = 1;
 		}
 	}else{
@@ -136,7 +126,6 @@ function verifMessage(champ){
 		}
 		else{
 			ajoutSuccess($(champ).prop('id'));
-			tabContent['inputMessage'] = champ.value;
 			tabErrors['inputMessage'] = 1;
 		}
 	}else{
@@ -195,6 +184,16 @@ function clearSucessError(nameInput){
 
 ///////////////////// Envoi de l'email /////////////////////
 function sendMail(){
-	//TODO
+	var name = $('#inputName').val();
+	var email = $('#inputEmail').val();
+	var subject = $('#inputSubject').val();
+	var message = $('#inputMessage').val();
+	
+	var dataString = 'username='+ name + '&email=' + email + '&subject=' + subject + '&message=' + message;
+	$.ajax({
+        type: "POST",
+        url: "validForms.php",
+        data: dataString,
+    });
 }
 	
