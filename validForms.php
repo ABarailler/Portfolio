@@ -4,7 +4,7 @@
 	$errors = array();
 
 	// Check Entries
-	if (isset($_POST['send']) || strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) === 'xmlhttprequest'){
+	if (isset($_POST['send']) || (isset($_SERVER['HTTP_X_REQUESTED_WITH']) && (strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) === 'xmlhttprequest'))){
 		if(!(isset($_POST['username']) && !empty($_POST['username']))){
 			$errors['username'] =  "Nom requis...";
 		}else{

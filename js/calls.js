@@ -40,11 +40,18 @@ $( document ).ready(function() {
 			}
 		}
 		if (test){
-			$('.bg-success').remove();
-			$('.bg-danger').remove();
-			$("#info-contact").append('<div class="bg-success col-sm-offset-2 col-sm-8 text-left">Message envoyé...</div>');
-			ajoutSucessErreur(tabErrors);
-			sendMail();
+			if ( flagSend == 0){
+				$('.bg-success').remove();
+				$('.bg-danger').remove();
+				$("#info-contact").append('<div class="bg-success col-sm-offset-2 col-sm-8 text-left">Message envoyé...</div>');
+				ajoutSucessErreur(tabErrors);
+				sendMail();
+			}else{
+				$('.bg-success').remove();
+				$('.bg-danger').remove();
+				$("#info-contact").append('<div class="bg-success col-sm-offset-2 col-sm-8 text-left">Message déja envoyé pour renvoyé un mail merci de rafraichir la page...</div>');
+				ajoutSucessErreur(tabErrors);
+			}
 		}else{
 			console.log(displayErrors);
 			var listErrors = '<div class="bg-danger col-sm-offset-2 col-sm-8 text-left"><ul>';
@@ -67,6 +74,8 @@ var tabErrors = {
 		 "inputSubject": "0",
 		 "inputMessage": "0",
 	};
+
+var flagSend = 0;
 
 ///////////////////// Verification /////////////////////
 function verifName(champ){
@@ -188,6 +197,7 @@ function sendMail(){
 	var email = $('#inputEmail').val();
 	var subject = $('#inputSubject').val();
 	var message = $('#inputMessage').val();
+	flagSend = 1;
 	
 	var dataString = 'username='+ name + '&email=' + email + '&subject=' + subject + '&message=' + message;
 	$.ajax({
