@@ -1,0 +1,140 @@
+<!--////////////////// HEADER //////////////////////-->
+	<header>
+		<div class="container">
+			<div class="row">
+				<div class="col-xs-12">
+					<img src="<?php echo $this->resultPerso[0]['link_image_portrait'];?>" class="img-responsive img-circle" alt="portrait">
+					<h1 class="name"><?php echo $this->resultPerso[0]['firstname']. ' ' . $this->resultPerso[0]['lastname'];?></h1>
+					<hr class="classic">
+					<p class="post"><?php echo $this->resultPerso[0]['job_search'];?></p>
+				</div>
+			</div>
+		</div>
+	</header>
+	<!--////////////////// A PROPOS //////////////////////-->
+	<section id="a-propos">
+		<div class="container">
+			<div class="row">
+				<div class="col-xs-12 text-center">
+					<h2>A propos</h2>
+					<hr class="bar-section">
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-xs-12 col-sm-4 col-sm-offset-2">
+					<p><?php echo $this->resultPerso[0]['general_info'];?>
+					</p>
+				</div>
+				<div class="col-xs-12 col-sm-4">
+					<p><?php echo $this->resultPerso[0]['recent_info'];?>
+					</p>
+				</div>
+			</div> 
+			<div class="row">
+				<div class="col-xs-12 col-sm-4 col-sm-offset-2">
+					<?php echo $this->languages;?>
+				</div>
+				<div class="col-xs-12 col-sm-4">
+					<?php echo $this->hobbies;?>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!--////////////////// COMPETENCES //////////////////////-->
+	<section id="competences">
+		<div class="container">
+			<div class="row">
+				<div class="col-xs-12 text-center">
+					<h2>Compétences</h2>
+					<hr class="bar-section">
+				</div>
+			</div>
+			<?php echo $this->skills; ?>
+		</div>
+	</section> 
+	<!--////////////////// PARCOURS //////////////////////-->
+	<section id="parcours">
+		<div class="container">
+			<div class="row">
+				<div class="col-xs-12 text-center">
+					<h2>Parcours</h2>
+					<hr class="bar-section">
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-xs-12 col-sm-6 colonne-1">
+					<h3>Parcours scolaire</h3>
+					<?php echo $this->schooling;?>
+				</div>
+				<div class="col-xs-12 col-sm-6 colonne-2">
+					<h3>Parcours Professionnel</h3>
+					<?php echo $this->career;?>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!--////////////////// PORTFOLIO //////////////////////-->
+	<section id="portfolio">
+		<div class="container">
+			<div class="row">
+				<div class="col-xs-12 text-center">
+					<h2>Portfolio</h2>
+					<hr class="bar-section">
+				</div>
+			</div>
+			<?php echo $this->achievement;?>
+		</div>
+	</section>
+	<!--////////////////// contact //////////////////////-->
+	<section id="contact">
+		<div class="container">
+			<div class="row">
+				<div class="col-xs-12 text-center">
+					<h2>Contacts</h2>
+					<hr class="bar-section">
+					<p class="intro">Intéressé par mon profil contacté moi</p>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<div id="info-contact">
+						<p><i class="fa fa-phone"></i><?php echo $this->resultPerso[0]['tel']?></p>
+						<p><i class="fa fa-envelope"></i><a href="mailto:<?php echo $this->resultPerso[0]['email']?>"><?php echo $this->resultPerso[0]['email']?></a></p>
+					</div>
+				</div>
+				<div class="col-md-12">
+					<form class="form-horizontal" method="POST" action="validForms.php">
+						<div class="form-group has-feedback" id="formName">
+							<label for="inputName" class="control-label"></label>
+							<div class="col-sm-offset-2 col-sm-8" id="contentName">
+								<input type="text" class="form-control" id="inputName" placeholder="Nom..." onblur="verifName(this)">
+							</div>
+						</div>
+						<div class="form-group has-feedback" id="formEmail">
+							<label for="inputEmail" class="control-label"></label>
+							<div class="col-sm-offset-2 col-sm-8" id="contentEmail">
+								<input type="email" class="form-control" id="inputEmail" placeholder="Email..." onblur="verifEmail(this)">
+							</div>
+						</div>
+						<div class="form-group has-feedback" id="formSubject">
+							<label for="inputSubject" class="control-label"></label>
+							<div class="col-sm-offset-2 col-sm-8" id="contentSubject">
+								<input type="text" class="form-control" id="inputSubject" placeholder="Objet..." onblur="verifSubject(this)">
+							</div>
+						</div>
+						<div class="form-group has-feedback" id="formMessage">
+							<label for="inputMessage" class="control-label"></label>
+							<div class="col-sm-offset-2 col-sm-8" id="contentMessage">
+								<textarea class="form-control" rows="4" id="inputMessage" placeholder="Votre message..." onblur="verifMessage(this)"></textarea>
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="col-sm-offset-2 col-sm-8 content-input text-left">
+								<button type="submit" class="btn btn-success" id="submitForm" name="send">Envoyer</button>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</section>

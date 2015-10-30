@@ -1,0 +1,41 @@
+<div class="container">
+<h1>Inscrivez-vous</h1>
+
+<?php if (0 !== count($this->errors)) : 
+	foreach($this->errors as $error) : ?>
+	<p class="text-warning"><?= $error ?></p>
+	<? endforeach;
+endif; ?>
+<?php if (isset($this->success)) : ?>
+	<?php if (!$this->success) : ?>
+		<p class="text-warning">Erreur inscription</p>
+	<?php else : ?>
+		<p class="text-warning">Good Job !</p>
+	<?php endif; ?>
+<?php endif; ?>
+<form class="form-horizontal" role="form" method="post">
+  <div class="form-group">
+    <label for="inputName" class="col-sm-2 control-label">Votre nom</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" name="inputName" placeholder="Nom, prénom">
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="inputLogin" class="col-sm-2 control-label">Votre identifiant</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" name="inputLogin" placeholder="Identifiant">
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="inputEmail" class="col-sm-2 control-label">Votre e-mail</label>
+    <div class="col-sm-10">
+      <input type="email" class="form-control" name="inputEmail" placeholder="E-mail">
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+      <button type="submit" class="btn btn-default">Valider</button>
+    </div>
+  </div>
+</form>
+</div>
